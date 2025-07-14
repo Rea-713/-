@@ -118,36 +118,19 @@ def plot_magnetic_analysis(df, location_name):
     plt.savefig(f'Magnetic_Analysis_{clean_name}.png', dpi=300, bbox_inches='tight')
     plt.show()
     
-    # 保存处理后的数据
-    output_file = f'Magnetic_Results_{clean_name}.csv'
-    df.to_csv(output_file, index=False)
-    print(f"\nProcessed data saved to: {output_file}")
-
 # 主程序
 if __name__ == "__main__":
-    file_path = "/Users/rea713/Downloads/phyphox 2025-06-25 19-40-06.xls"  # Excel文件路径
-    location_name = "Location 1"  #
+    file_path = "/Users/rea713/Downloads/phyphox 2025-06-30 11-04-03.xls"  # Excel文件路径
+    date = "2025.6.30"  #
     
-    print(f"Reading data from: {file_path}")
     df = read_magnetic_data(file_path)
     
-    if df is None:
-        print("Failed to read data file. Exiting.")
-        sys.exit(1)
-    
-    # 检查数据完整性
-    if df.empty:
-        print("Error: Data file is empty.")
-        sys.exit(1)
-    
-    print(f"Successfully read {len(df)} data points")
     
     # 显示前几行数据以验证读取
     print("\nFirst few rows of data:")
     print(df.head())
     
     # 计算磁参数
-    print("\nCalculating magnetic parameters...")
     df = calculate_magnetic_parameters(df)
     
     # 结果统计
@@ -160,5 +143,9 @@ if __name__ == "__main__":
     print(f"  Total Field Range: {df['Absolute_field_uT'].min():.2f} to {df['Absolute_field_uT'].max():.2f} µT")
     
     # 绘图
-    plot_magnetic_analysis(df, location_name)
-    print("Analysis complete!")
+    plot_magnetic_analysis(df, date)
+    
+    
+    
+    
+    
